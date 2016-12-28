@@ -12,26 +12,7 @@
 		843567DE1E0CF3470008636F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843567DC1E0CF3470008636F /* Main.storyboard */; };
 		843567E01E0CF3470008636F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843567DF1E0CF3470008636F /* Assets.xcassets */; };
 		843567E31E0CF3470008636F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843567E11E0CF3470008636F /* LaunchScreen.storyboard */; };
-		843567EE1E0CF3470008636F /* RacePredictorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843567ED1E0CF3470008636F /* RacePredictorTests.swift */; };
-		843567F91E0CF3470008636F /* RacePredictorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843567F81E0CF3470008636F /* RacePredictorUITests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		843567EA1E0CF3470008636F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843567CD1E0CF3470008636F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 843567D41E0CF3470008636F;
-			remoteInfo = RacePredictor;
-		};
-		843567F51E0CF3470008636F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 843567CD1E0CF3470008636F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 843567D41E0CF3470008636F;
-			remoteInfo = RacePredictor;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		843567D51E0CF3470008636F /* RacePredictor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RacePredictor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,30 +22,10 @@
 		843567DF1E0CF3470008636F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		843567E21E0CF3470008636F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843567E41E0CF3470008636F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		843567E91E0CF3470008636F /* RacePredictorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RacePredictorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		843567ED1E0CF3470008636F /* RacePredictorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacePredictorTests.swift; sourceTree = "<group>"; };
-		843567EF1E0CF3470008636F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		843567F41E0CF3470008636F /* RacePredictorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RacePredictorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		843567F81E0CF3470008636F /* RacePredictorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RacePredictorUITests.swift; sourceTree = "<group>"; };
-		843567FA1E0CF3470008636F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		843567D21E0CF3470008636F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		843567E61E0CF3470008636F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		843567F11E0CF3470008636F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,8 +39,6 @@
 			isa = PBXGroup;
 			children = (
 				843567D71E0CF3470008636F /* RacePredictor */,
-				843567EC1E0CF3470008636F /* RacePredictorTests */,
-				843567F71E0CF3470008636F /* RacePredictorUITests */,
 				843567D61E0CF3470008636F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				843567D51E0CF3470008636F /* RacePredictor.app */,
-				843567E91E0CF3470008636F /* RacePredictorTests.xctest */,
-				843567F41E0CF3470008636F /* RacePredictorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,24 +62,6 @@
 				843567E41E0CF3470008636F /* Info.plist */,
 			);
 			path = RacePredictor;
-			sourceTree = "<group>";
-		};
-		843567EC1E0CF3470008636F /* RacePredictorTests */ = {
-			isa = PBXGroup;
-			children = (
-				843567ED1E0CF3470008636F /* RacePredictorTests.swift */,
-				843567EF1E0CF3470008636F /* Info.plist */,
-			);
-			path = RacePredictorTests;
-			sourceTree = "<group>";
-		};
-		843567F71E0CF3470008636F /* RacePredictorUITests */ = {
-			isa = PBXGroup;
-			children = (
-				843567F81E0CF3470008636F /* RacePredictorUITests.swift */,
-				843567FA1E0CF3470008636F /* Info.plist */,
-			);
-			path = RacePredictorUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,42 +84,6 @@
 			productReference = 843567D51E0CF3470008636F /* RacePredictor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		843567E81E0CF3470008636F /* RacePredictorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 843568001E0CF3470008636F /* Build configuration list for PBXNativeTarget "RacePredictorTests" */;
-			buildPhases = (
-				843567E51E0CF3470008636F /* Sources */,
-				843567E61E0CF3470008636F /* Frameworks */,
-				843567E71E0CF3470008636F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				843567EB1E0CF3470008636F /* PBXTargetDependency */,
-			);
-			name = RacePredictorTests;
-			productName = RacePredictorTests;
-			productReference = 843567E91E0CF3470008636F /* RacePredictorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		843567F31E0CF3470008636F /* RacePredictorUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 843568031E0CF3470008636F /* Build configuration list for PBXNativeTarget "RacePredictorUITests" */;
-			buildPhases = (
-				843567F01E0CF3470008636F /* Sources */,
-				843567F11E0CF3470008636F /* Frameworks */,
-				843567F21E0CF3470008636F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				843567F61E0CF3470008636F /* PBXTargetDependency */,
-			);
-			name = RacePredictorUITests;
-			productName = RacePredictorUITests;
-			productReference = 843567F41E0CF3470008636F /* RacePredictorUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -194,16 +97,6 @@
 					843567D41E0CF3470008636F = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
-					};
-					843567E81E0CF3470008636F = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 843567D41E0CF3470008636F;
-					};
-					843567F31E0CF3470008636F = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 843567D41E0CF3470008636F;
 					};
 				};
 			};
@@ -221,8 +114,6 @@
 			projectRoot = "";
 			targets = (
 				843567D41E0CF3470008636F /* RacePredictor */,
-				843567E81E0CF3470008636F /* RacePredictorTests */,
-				843567F31E0CF3470008636F /* RacePredictorUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -238,20 +129,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		843567E71E0CF3470008636F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		843567F21E0CF3470008636F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -264,36 +141,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		843567E51E0CF3470008636F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				843567EE1E0CF3470008636F /* RacePredictorTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		843567F01E0CF3470008636F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				843567F91E0CF3470008636F /* RacePredictorUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		843567EB1E0CF3470008636F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 843567D41E0CF3470008636F /* RacePredictor */;
-			targetProxy = 843567EA1E0CF3470008636F /* PBXContainerItemProxy */;
-		};
-		843567F61E0CF3470008636F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 843567D41E0CF3470008636F /* RacePredictor */;
-			targetProxy = 843567F51E0CF3470008636F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		843567DC1E0CF3470008636F /* Main.storyboard */ = {
@@ -430,60 +278,6 @@
 			};
 			name = Release;
 		};
-		843568011E0CF3470008636F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = RacePredictorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RacePredictorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RacePredictor.app/RacePredictor";
-			};
-			name = Debug;
-		};
-		843568021E0CF3470008636F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = RacePredictorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RacePredictorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RacePredictor.app/RacePredictor";
-			};
-			name = Release;
-		};
-		843568041E0CF3470008636F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = RacePredictorUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RacePredictorUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = RacePredictor;
-			};
-			name = Debug;
-		};
-		843568051E0CF3470008636F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = RacePredictorUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RacePredictorUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = RacePredictor;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -501,24 +295,6 @@
 			buildConfigurations = (
 				843567FE1E0CF3470008636F /* Debug */,
 				843567FF1E0CF3470008636F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		843568001E0CF3470008636F /* Build configuration list for PBXNativeTarget "RacePredictorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				843568011E0CF3470008636F /* Debug */,
-				843568021E0CF3470008636F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		843568031E0CF3470008636F /* Build configuration list for PBXNativeTarget "RacePredictorUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				843568041E0CF3470008636F /* Debug */,
-				843568051E0CF3470008636F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

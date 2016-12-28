@@ -9,6 +9,11 @@ class Calculator: UIViewController {
     @IBOutlet weak var mins: UITextField!
     @IBOutlet weak var secs: UITextField!
     
+    @IBOutlet weak var projected_distance: UITextField!
+    @IBOutlet weak var projected_time_hours: UITextField!
+    @IBOutlet weak var projected_time_mins: UITextField!
+    @IBOutlet weak var projected_time_secs: UITextField!
+    
     @IBOutlet weak var projected_mile_hours: UITextField!
     @IBOutlet weak var projected_mile_mins: UITextField!
     @IBOutlet weak var projected_mile_secs: UITextField!
@@ -54,6 +59,10 @@ class Calculator: UIViewController {
         secs.text = "\(est_secs)"
     }
     
+    @IBAction func onTap(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
     @IBAction func calculate(_ sender: AnyObject) {
         
         let distance_run = Double(dist.text!) ?? 0
@@ -62,6 +71,10 @@ class Calculator: UIViewController {
         let secs_run = Double(secs.text!) ?? 0
 
         let total_min_run = hours_run*60 + mins_run + secs_run/60
+        
+        let proj_dist = Double(projected_distance.text!) ?? 0
+        
+        showChanges(hours: projected_time_hours, mins: projected_time_mins, secs: projected_time_secs, distance_run: distance_run, total_min_run: total_min_run, projected_distance: proj_dist)
         
         showChanges(hours: projected_mile_hours, mins: projected_mile_mins, secs: projected_mile_secs, distance_run: distance_run, total_min_run: total_min_run, projected_distance: 1)
         
