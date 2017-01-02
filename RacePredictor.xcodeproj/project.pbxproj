@@ -13,7 +13,9 @@
 		843567E01E0CF3470008636F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843567DF1E0CF3470008636F /* Assets.xcassets */; };
 		843567E31E0CF3470008636F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843567E11E0CF3470008636F /* LaunchScreen.storyboard */; };
 		84705ECF1E174BB900FA29EB /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705ECE1E174BB900FA29EB /* CustomCell.swift */; };
-		84705ED31E17544600FA29EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705ED21E17544600FA29EB /* ViewController.swift */; };
+		84705ED31E17544600FA29EB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705ED21E17544600FA29EB /* ActivityViewController.swift */; };
+		84705EDD1E1A28A900FA29EB /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705EDC1E1A28A900FA29EB /* ActivityDetailsViewController.swift */; };
+		84705EE51E1A360F00FA29EB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705EE41E1A360F00FA29EB /* Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		843567E21E0CF3470008636F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		843567E41E0CF3470008636F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84705ECE1E174BB900FA29EB /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		84705ED21E17544600FA29EB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84705ED21E17544600FA29EB /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		84705EDC1E1A28A900FA29EB /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityDetailsViewController.swift; path = ../ActivityDetailsViewController.swift; sourceTree = "<group>"; };
+		84705EE41E1A360F00FA29EB /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +62,12 @@
 		843567D71E0CF3470008636F /* RacePredictor */ = {
 			isa = PBXGroup;
 			children = (
+				84705EE41E1A360F00FA29EB /* Activity.swift */,
+				84705ED21E17544600FA29EB /* ActivityViewController.swift */,
+				84705EDC1E1A28A900FA29EB /* ActivityDetailsViewController.swift */,
 				843567D81E0CF3470008636F /* AppDelegate.swift */,
 				843567DA1E0CF3470008636F /* Calculator.swift */,
 				84705ECE1E174BB900FA29EB /* CustomCell.swift */,
-				84705ED21E17544600FA29EB /* ViewController.swift */,
 				843567DC1E0CF3470008636F /* Main.storyboard */,
 				843567DF1E0CF3470008636F /* Assets.xcassets */,
 				843567E11E0CF3470008636F /* LaunchScreen.storyboard */,
@@ -142,7 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84705ED31E17544600FA29EB /* ViewController.swift in Sources */,
+				84705EDD1E1A28A900FA29EB /* ActivityDetailsViewController.swift in Sources */,
+				84705EE51E1A360F00FA29EB /* Activity.swift in Sources */,
+				84705ED31E17544600FA29EB /* ActivityViewController.swift in Sources */,
 				843567DB1E0CF3470008636F /* Calculator.swift in Sources */,
 				84705ECF1E174BB900FA29EB /* CustomCell.swift in Sources */,
 				843567D91E0CF3470008636F /* AppDelegate.swift in Sources */,
