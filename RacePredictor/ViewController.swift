@@ -1,16 +1,6 @@
-//
-//  Activities.swift
-//  RacePredictor
-//
-//  Created by admin on 12/30/16.
-//  Copyright © 2016 JS. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-  
-    let ls = ["clock", "calculator", "settings"]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,25 +13,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ls.count
+        return 5
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let myCell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath) as! CustomCell
-     
-        myCell.textLabel?.text = ls[indexPath.row]
-        myCell.imageView?.image = UIImage(named: ls[indexPath.row])
-        
-        // Blue outline
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath) as! CustomCell
+          
+        // Dark blue outline on bottom border
+        let border = CALayer()
+        let width = CGFloat(2.0)
         let darkBlue = UIColor(red: 9/255, green: 19/255, blue: 34/255, alpha: 1)
-        myCell.layer.borderWidth = 2.0
-        myCell.layer.borderColor = darkBlue.cgColor
+        border.borderColor = darkBlue.cgColor
+        border.frame = CGRect(x: 0, y: cell.frame.size.height - width, width: cell.frame.size.width, height: cell.frame.size.height)
+        border.borderWidth = width
+        cell.layer.addSublayer(border)
+        cell.layer.masksToBounds = true
+        // Make selected background color a lighter blue
+        let bgView = UIView()
+        bgView.backgroundColor = UIColor(red: 221/255, green: 233/255, blue: 255/255, alpha: 1)
+        cell.selectedBackgroundView = bgView
         
-        return myCell
+        return cell
         
     }
 

@@ -9,6 +9,8 @@ class Calculator: UIViewController {
     @IBOutlet weak var mins: UITextField!
     @IBOutlet weak var secs: UITextField!
     
+    @IBOutlet weak var pace: UITextField!
+    
     @IBOutlet weak var projected_distance: UITextField!
     @IBOutlet weak var projected_time: UITextField!
     
@@ -18,17 +20,7 @@ class Calculator: UIViewController {
     @IBOutlet weak var projected_half: UITextField!
     @IBOutlet weak var projected_marathon: UITextField!
     
-    @IBOutlet weak var dist_label: UILabel!
-    @IBOutlet weak var time_label: UILabel!
-    @IBOutlet weak var proj_dist_label: UILabel!
     @IBOutlet weak var proj_time_label: UILabel!
-    @IBOutlet weak var mile_label: UILabel!
-    @IBOutlet weak var fivek_label: UILabel!
-    @IBOutlet weak var tenk_label: UILabel!
-    @IBOutlet weak var half_label: UILabel!
-    @IBOutlet weak var marathon_label: UILabel!
-    
-    @IBOutlet weak var dark_blue_bg: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,32 +36,23 @@ class Calculator: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: Other functions
     func toDefaultScreen(time: Double) {
         let proj_dist = Int(self.projected_distance.text!) ?? 0
         
         UIView.animate(withDuration: time, animations: {
             if proj_dist == 0 || (self.hours.text == "" && self.mins.text == "" && self.secs.text == "") {
-                self.proj_time_label.alpha = 0
                 self.projected_time.alpha = 0
             }
             else {
-                self.proj_time_label.alpha = 1
                 self.projected_time.alpha = 1
             }
             
-            self.mile_label.alpha = 0
+            self.pace.alpha = 0
             self.projected_mile.alpha = 0
-
-            self.fivek_label.alpha = 0
             self.projected_5k.alpha = 0
-       
-            self.tenk_label.alpha = 0
             self.projected_10k.alpha = 0
-
-            self.half_label.alpha = 0
             self.projected_half.alpha = 0
-            
-            self.marathon_label.alpha = 0
             self.projected_marathon.alpha = 0
         })
     }
@@ -80,28 +63,18 @@ class Calculator: UIViewController {
             
             if proj_dist == 0 {
                 self.proj_time_label.text = "Projected Time"
-                self.projected_time.text = ""
+                self.projected_time.alpha = 0
             }
             else {
                 self.proj_time_label.text = "Projected " + (self.projected_distance.text ?? "") + "-Miler"
+                self.projected_time.alpha = 1
             }
             
-            self.proj_time_label.alpha = 1
-            self.projected_time.alpha = 1
-            
-            self.mile_label.alpha = 1
+            self.pace.alpha = 1
             self.projected_mile.alpha = 1
-            
-            self.fivek_label.alpha = 1
             self.projected_5k.alpha = 1
-            
-            self.tenk_label.alpha = 1
             self.projected_10k.alpha = 1
-            
-            self.half_label.alpha = 1
             self.projected_half.alpha = 1
-            
-            self.marathon_label.alpha = 1
             self.projected_marathon.alpha = 1
         })
     }
@@ -130,6 +103,14 @@ class Calculator: UIViewController {
         }
     }
     
+    func calculatePace(total_min: Double, total_dist: Double) {
+        let mile_pace = total_min/total_dist
+        let hours = (Int)(mile_pace/60)
+        let mins = (Int)(mile_pace) - hours*60
+        let secs = (Int)(mile_pace*60) - (Int)(mile_pace)*60
+        pace.text = "\(hours):\(twoDigits(number: mins)):\(twoDigits(number: secs))"
+    }
+    
     //MARK: Actions
     @IBAction func onTap(_ sender: Any) {
         view.endEditing(true)
@@ -150,6 +131,7 @@ class Calculator: UIViewController {
             toDefaultScreen(time: 0.1)
         }
         else {
+            calculatePace(total_min: total_min_run, total_dist: distance_run)
             showTimes()
         }
         

@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  RacePredictor
-//
-//  Created by admin on 12/22/16.
-//  Copyright © 2016 JS. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
