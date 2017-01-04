@@ -3,11 +3,11 @@ import UIKit
 struct Activity {
     var date: String?
     var distance: String?
-    var time: String?
+    var duration: String?
     
-    init(date: String?, distance: String?, time: String?) {
+    init(date: String?, distance: String?, duration: String?) {
         self.date = date
         self.distance = distance
-        self.time = time
+        self.duration = duration
     }
 }
