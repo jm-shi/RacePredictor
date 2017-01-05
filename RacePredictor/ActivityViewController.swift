@@ -2,9 +2,10 @@ import UIKit
 
 class ActivityViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     
-    var activities:[Activity] = [Activity(date: "11/4/14, 10:42 AM", distance: "3.1 mi", duration: "15:53"), Activity(date: "1/2/17, 2:12 PM", distance: "10.4 mi", duration: "1:02:42")]
+    var activities:[Activity] = [Activity(name: "XC Meet", date: "11/4/15, 10:42 AM", distance: "3.1 mi", duration: "15:53", pace: "5:07/mi", mile: "Projected Mile: 4:47", fiveK: "Projected 5K: 15:53", tenK: "Projected 10K: 33:06", half: "Projected Half: 1:13:10", marathon: "Projected Marathon: 2:32:34"), Activity(name: "Tempo Run", date: "1/2/17, 2:12 PM", distance: "10.4 mi", duration: "1:02:42", pace: "6:01/mi", mile: "Projected Mile: 5:14", fiveK: "Projected 5K: 17:22", tenK: "Projected 10K: 36:14", half: "Projected Half: 1:20:04", marathon: "Projected Marathon: 2:46:57")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +16,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: tableView features
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -42,6 +44,10 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let activity = activities[indexPath.row] as Activity
         
+        if let titleLabel = cell.viewWithTag(99) as? UILabel {
+            titleLabel.text = activity.name
+        }
+        
         if let dateLabel = cell.viewWithTag(100) as? UILabel {
             dateLabel.text = activity.date
         }
@@ -52,6 +58,34 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if let distanceLabel = cell.viewWithTag(102) as? UILabel {
             distanceLabel.text = activity.distance
+        }
+        
+        if let paceLabel = cell.viewWithTag(103) as? UILabel {
+            paceLabel.text = activity.pace
+        }
+        
+        if let mileLabel = cell.viewWithTag(104) as? UILabel {
+            mileLabel.text = activity.mile
+        }
+        
+        if let mileLabel = cell.viewWithTag(104) as? UILabel {
+            mileLabel.text = activity.mile
+        }
+        
+        if let fiveKLabel = cell.viewWithTag(105) as? UILabel {
+            fiveKLabel.text = activity.fiveK
+        }
+        
+        if let tenKLabel = cell.viewWithTag(106) as? UILabel {
+            tenKLabel.text = activity.tenK
+        }
+        
+        if let halfLabel = cell.viewWithTag(107) as? UILabel {
+            halfLabel.text = activity.half
+        }
+        
+        if let marathonLabel = cell.viewWithTag(108) as? UILabel {
+            marathonLabel.text = activity.marathon
         }
         
         return cell
@@ -76,6 +110,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    //MARK: Actions
     // Edit button serves to delete/reorder cells
     @IBAction func editCells(_ sender: Any) {
         self.tableView.isEditing = !self.tableView.isEditing

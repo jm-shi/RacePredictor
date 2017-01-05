@@ -2,16 +2,17 @@ import UIKit
 
 class CustomCell: UITableViewCell {
 
-    @IBOutlet var theDate: UILabel!
-    @IBOutlet var theDistance: UILabel!
-    @IBOutlet var theTime: UILabel!
-    @IBOutlet var thePace: UILabel!
+    @IBOutlet weak var theTitle: UILabel!
+    @IBOutlet weak var theDate: UILabel!
+    @IBOutlet weak var theDistance: UILabel!
+    @IBOutlet weak var theTime: UILabel!
+    @IBOutlet weak var thePace: UILabel!
     
-    @IBOutlet var mile: UILabel!
-    @IBOutlet var fiveK: UILabel!
-    @IBOutlet var tenK: UILabel!
-    @IBOutlet var halfMarathon: UILabel!
-    @IBOutlet var marathon: UILabel!
+    @IBOutlet weak var mile: UILabel!
+    @IBOutlet weak var fiveK: UILabel!
+    @IBOutlet weak var tenK: UILabel!
+    @IBOutlet weak var halfMarathon: UILabel!
+    @IBOutlet weak var marathon: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

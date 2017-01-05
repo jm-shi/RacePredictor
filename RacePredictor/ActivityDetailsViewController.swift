@@ -3,6 +3,9 @@ import UIKit
 class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
     
     //MARK: Properties
+    @IBOutlet weak var titleDetailLabel: UILabel!
+    @IBOutlet weak var titleButton: UIButton!
+    
     @IBOutlet weak var dateDetailLabel: UILabel!
     @IBOutlet weak var dateText: UITextField!
     
@@ -12,7 +15,7 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
     @IBOutlet weak var durationDetailLabel: UILabel!
     @IBOutlet weak var durationText: UITextField!
     
-    var distPickerData = [[String](), [String](), [String](), [".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9"], ["mi", "km"]]
+    var distPickerData = [[String](), [String](), [String](), [".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9"], ["mi"]]
     let hundredsDistComponent = 0
     let tensDistComponent = 1
     let onesDistComponent = 2
@@ -25,7 +28,9 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
     let secsComponent = 2
     
     var activity:Activity?
-    var datePickerHidden = true
+    var distanceRun = String()
+    var timeTaken = [String](repeating: "", count: 3)
+    var newActivity = true
     
     //MARK: viewDidLoad
     override func viewDidLoad() {
@@ -45,12 +50,14 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
             durationPickerData[secsComponent].append(String(index) + "s")
         }
         
+        UserDefaults.standard.set("Untitled Run", forKey: "nameLabel")
+        
         let datePickerView = UIDatePicker()
         dateText.inputView = datePickerView
         dateText.tintColor = UIColor.clear
         dateText.delegate = self
         datePickerView.addTarget(self, action: #selector(ActivityDetailsViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
-        
+
         // Current date is default date
         dateDetailLabel.text = DateFormatter.localizedString(from: datePickerView.date, dateStyle: .short, timeStyle: .short)
         
@@ -60,7 +67,7 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         distanceText.inputView = distPickerView
         distanceText.tintColor = UIColor.clear
         distanceText.delegate = self
-
+        
         let durationPickerView = UIPickerView()
         durationPickerView.tag = 2
         durationPickerView.delegate = self
@@ -75,7 +82,13 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         super.didReceiveMemoryWarning()
     }
     
-    //MARK: pickerView delegate and data sources
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let name:String = UserDefaults.standard.string(forKey: "nameLabel") ?? "Untitled Run"
+        titleDetailLabel.text = name
+    }
+    
+    //MARK: pickerView delegate and data sources (for distance and duration)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView.tag == 1 {
             return 5
@@ -118,6 +131,9 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         let ones = distPickerData[onesDistComponent][distPickerView.selectedRow(inComponent: onesDistComponent)]
         let tenths = distPickerData[tenthsDistComponent][distPickerView.selectedRow(inComponent: tenthsDistComponent)]
         
+        // Save the distance
+        distanceRun = hundreds + tens + ones + tenths
+        
         let distType = distPickerData[distTypeComponent][distPickerView.selectedRow(inComponent: distTypeComponent)]
         
         if hundreds == "0" {
@@ -135,18 +151,30 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         var mins = durationPickerData[minsComponent][durationPickerView.selectedRow(inComponent: minsComponent)]
         var secs = durationPickerData[secsComponent][durationPickerView.selectedRow(inComponent: secsComponent)]
         
-        // Drop the last character, and add 0 to front if necessary
+        // Drop the last character
         hours = hours.substring(to: hours.index(before: hours.endIndex))
         mins = mins.substring(to: mins.index(before: mins.endIndex))
         secs = secs.substring(to: secs.index(before: secs.endIndex))
-        if (Int(mins)! < 10) {
+        
+        // Save the time
+        timeTaken[0] = hours
+        timeTaken[1] = mins
+        timeTaken[2] = secs
+        
+        // Add 0 if necessary
+        if (Int(mins)! < 10 && Int(hours)! != 0) {
             mins = "0" + mins
         }
         if (Int(secs)! < 10) {
             secs = "0" + secs
         }
         
-        durationDetailLabel.text = hours + ":" + mins + ":" + secs
+        if (Int(hours) == 0) {
+            durationDetailLabel.text = mins + ":" + secs
+        }
+        else {
+            durationDetailLabel.text = hours + ":" + mins + ":" + secs
+        }
     }
     
     func dismissKeyboard() {
@@ -162,9 +190,48 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         dateDetailLabel.text = dateFormatter.string(from: sender.date)
     }
     
+    // Don't save if user did not enter both distance and duration
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "saveActivity" {
+            if (timeTaken[0] == "" && timeTaken[1] == "" && timeTaken[2] == "") || (distanceRun == "") {
+                return false
+            }
+        }
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if titleDetailLabel.text == "" {
+            titleDetailLabel.text = "Untitled Run"
+        }
+        if segue.identifier == "enterName" {
+            return
+        }
+        
+        if segue.identifier == "cancelActivity" {
+            return
+        }
+        
+        let totalMinRun = calculateTotalMinRun(hours_run: Double(timeTaken[0])!, mins_run: Double(timeTaken[1])!, secs_run: Double(timeTaken[2])!)
+        
+        let paceArray:[Int] = calculatePace(total_min: totalMinRun, total_dist: Double(distanceRun)!)
+        
+        var thePace = String()
+        if paceArray[0] != 0 {
+            thePace = String(paceArray[0]) + ":" + twoDigits(number: paceArray[1]) + ":" + twoDigits(number: paceArray[2]) + "/mi"
+        }
+        else {
+            thePace = String(paceArray[1]) + ":" + twoDigits(number: paceArray[2]) + "/mi"
+        }
+        
+        let updatedMileLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 1.0, distance_name: "Mile")
+         let updated5KLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 3.1, distance_name: "5K")
+         let updated10KLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 6.2, distance_name: "10K")
+         let updatedHalfLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 13.1, distance_name: "Half")
+         let updatedMarathonLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 26.2, distance_name: "Marathon")
+        
         if segue.identifier == "saveActivity" {
-            activity = Activity(date: dateDetailLabel.text, distance: distanceDetailLabel.text, duration: durationDetailLabel.text)
+            activity = Activity(name: titleDetailLabel.text, date: dateDetailLabel.text, distance: distanceDetailLabel.text, duration: durationDetailLabel.text, pace: thePace, mile: updatedMileLabel, fiveK: updated5KLabel, tenK: updated10KLabel, half: updatedHalfLabel, marathon: updatedMarathonLabel)
         }
     }
     
