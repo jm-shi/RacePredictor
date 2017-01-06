@@ -37,6 +37,30 @@ class CalculatorViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let distUnitsIndex = UserDefaults.standard.integer(forKey: ("distUnitsIndex"))
+        if distUnitsIndex == 0 {
+            dist.placeholder = "miles"
+        }
+        else {
+            dist.placeholder = "kilometers"
+        }
+        
+        let projectedDistUnitsIndex = UserDefaults.standard.integer(forKey: ("projectedDistUnitsIndex"))
+        if projectedDistUnitsIndex == 0 {
+            projected_distance.placeholder = "miles"
+        }
+        else {
+            projected_distance.placeholder = "kilometers"
+        }
+        
+        calculateAndUpdate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        view.endEditing(true)
+    }
+    
     //MARK: Other functions
     func toDefaultScreen(time: Double) {
         let proj_dist = Int(self.projected_distance.text!) ?? 0
@@ -67,7 +91,12 @@ class CalculatorViewController: UIViewController {
                 self.projected_time.alpha = 0
             }
             else {
-                self.proj_time_label.text = "Projected " + (self.projected_distance.text ?? "") + "-Miler"
+                if UserDefaults.standard.string(forKey: "projectedDistUnits") == "km" {
+                    self.proj_time_label.text = "Projected " + (self.projected_distance.text ?? "") + "K"
+                }
+                else {
+                    self.proj_time_label.text = "Projected " + (self.projected_distance.text ?? "") + "-Miler"
+                }
                 self.projected_time.alpha = 1
             }
             
@@ -81,8 +110,7 @@ class CalculatorViewController: UIViewController {
     }
     
     func showProjectedTimes(distance_run: Double, total_min_run: Double, projected_distance: Double, projected_time: UITextField) {
-
-        let time:[Int] = predictTime(distance_run: distance_run, total_min_run: total_min_run, projected_distance: projected_distance)
+        let time:[Int] = predictTime(distance_run: distance_run, total_min_run: total_min_run, projected_distance: projected_distance, adding_activity: false)
  
         projected_time.text = "\(time[0]):\(twoDigits(number: time[1])):\(twoDigits(number: time[2]))"
     }
@@ -97,14 +125,8 @@ class CalculatorViewController: UIViewController {
         }
     }
     
-    //MARK: Actions
-    @IBAction func onTap(_ sender: Any) {
-        view.endEditing(true)
-    }
-    
-    // Calculate pace and projected times, then show results onscreen
-    @IBAction func calculate(_ sender: AnyObject) {
-        
+    // Calculate pace and projected times, then modify textfields
+    func calculateAndUpdate() {
         let distance_run = Double(dist.text!) ?? 0
         let hours_run = Double(hours.text!) ?? 0
         let mins_run = Double(mins.text!) ?? 00
@@ -123,18 +145,28 @@ class CalculatorViewController: UIViewController {
         }
         
         if proj_dist < Double(Int.max/100) && proj_dist != 0 {
-        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: proj_dist, projected_time: projected_time)
+            showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: proj_dist, projected_time: projected_time)
         }
         
         showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 1, projected_time: projected_mile)
         
-        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 3.1, projected_time: projected_5k)
+        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 3.10686, projected_time: projected_5k)
         
-        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 6.2, projected_time: projected_10k)
+        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 6.21371, projected_time: projected_10k)
         
-        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 13.1, projected_time: projected_half)
+        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 13.1094, projected_time: projected_half)
         
-        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 26.2, projected_time: projected_marathon)
+        showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 26.2188, projected_time: projected_marathon)
+    }
+    
+    //MARK: Actions
+    @IBAction func onTap(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
+    // Calculate pace and projected times, then show results onscreen
+    @IBAction func calculate(_ sender: AnyObject) {
+        calculateAndUpdate()
     }
 
 }

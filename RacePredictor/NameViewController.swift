@@ -17,6 +17,7 @@ class NameViewController: UIViewController {
         var name:String = UserDefaults.standard.string(forKey: "nameLabel") ?? ""
         name = nameTextField.text!
         UserDefaults.standard.set(name, forKey: "nameLabel")
+        UserDefaults.standard.synchronize()
     }
     
 }

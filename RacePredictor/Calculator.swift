@@ -11,11 +11,51 @@ func twoDigits(number: Int) -> String {
     }
 }
 
-func predictTime(distance_run: Double, total_min_run: Double, projected_distance: Double) -> Array<Int> {
+func kmToMiles(km: Double) -> Double {
+    return km * 0.621371
+}
+
+func convertDistRunToMiles(distance_run: Double, adding_activity: Bool) -> Double {
+    var distRun = distance_run
+    let defaults = UserDefaults.standard
+    
+    if adding_activity {
+        let distType = UserDefaults.standard.string(forKey: "distType")
+        if distType == "km" {
+            distRun = kmToMiles(km: distance_run)
+        }
+    }
+    else {
+        let distanceUnits = defaults.string(forKey: "distUnits")
+        if distanceUnits == "km" {
+            distRun = kmToMiles(km: distance_run)
+        }
+    }
+    return distRun
+}
+
+func convertProjectedDistRunToMiles(projected_distance: Double) -> Double {
+    var projectedDistRun = projected_distance
+    let defaults = UserDefaults.standard
+    let projectedDistanceUnits = defaults.string(forKey: "projectedDistUnits")
+    if projectedDistanceUnits == "km" {
+        projectedDistRun = kmToMiles(km: projected_distance)
+    }
+    return projectedDistRun
+}
+
+func predictTime(distance_run: Double, total_min_run: Double, projected_distance: Double, adding_activity: Bool) -> Array<Int> {
+    
+    var distRun = distance_run
+    var projectedDistRun = projected_distance
+    
+    distRun = convertDistRunToMiles(distance_run: distRun, adding_activity: adding_activity)
+    projectedDistRun = convertProjectedDistRunToMiles(projected_distance: projectedDistRun)
+    
     var est_total_min = (Double)(0)
     
-    if distance_run != 0 {
-        est_total_min = total_min_run * pow(projected_distance/distance_run, 1.06)
+    if distRun != 0 {
+        est_total_min = total_min_run * pow(projectedDistRun/distRun, 1.06)
     }
     
     let est_hours = (Int)(est_total_min/60)
@@ -42,9 +82,9 @@ func calculateTotalMinRun(hours_run: Double, mins_run: Double, secs_run: Double)
     return hours_run*60 + mins_run + secs_run/60
 }
 
-
+// For ActivityDetailsViewController
 func updateLabels(distance_run: Double, total_min_run: Double, projected_distance: Double, distance_name: String) -> String {
-    let timeArray:[Int] = predictTime(distance_run: Double(distance_run), total_min_run: Double(total_min_run), projected_distance: projected_distance)
+    let timeArray:[Int] = predictTime(distance_run: Double(distance_run), total_min_run: Double(total_min_run), projected_distance: projected_distance, adding_activity: true)
     
     var updatedLabel = "Projected " + distance_name + ": "
     if timeArray[0] != 0 {
@@ -56,4 +96,3 @@ func updateLabels(distance_run: Double, total_min_run: Double, projected_distanc
     
     return updatedLabel
 }
-

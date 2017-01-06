@@ -199,11 +199,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RacePredictor/ActivityDetailsViewController.swift"
-            timestampString = "505302673.668954"
+            timestampString = "505389099.800139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>

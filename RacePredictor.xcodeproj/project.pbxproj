@@ -18,6 +18,7 @@
 		84705EE51E1A360F00FA29EB /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84705EE41E1A360F00FA29EB /* Activity.swift */; };
 		84CBF1531E1CEA40006A368F /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF1521E1CEA40006A368F /* Calculator.swift */; };
 		84CBF1551E1DD4B6006A368F /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF1541E1DD4B6006A368F /* NameViewController.swift */; };
+		84CBF1591E1F976A006A368F /* UnitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF1581E1F976A006A368F /* UnitsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		84705EE41E1A360F00FA29EB /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		84CBF1521E1CEA40006A368F /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		84CBF1541E1DD4B6006A368F /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		84CBF1581E1F976A006A368F /* UnitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				84CBF1521E1CEA40006A368F /* Calculator.swift */,
 				84705ECE1E174BB900FA29EB /* CustomCell.swift */,
 				84CBF1541E1DD4B6006A368F /* NameViewController.swift */,
+				84CBF1581E1F976A006A368F /* UnitsViewController.swift */,
 				843567DC1E0CF3470008636F /* Main.storyboard */,
 				843567DF1E0CF3470008636F /* Assets.xcassets */,
 				843567E11E0CF3470008636F /* LaunchScreen.storyboard */,
@@ -161,6 +164,7 @@
 				843567DB1E0CF3470008636F /* CalculatorViewController.swift in Sources */,
 				84CBF1551E1DD4B6006A368F /* NameViewController.swift in Sources */,
 				84705ECF1E174BB900FA29EB /* CustomCell.swift in Sources */,
+				84CBF1591E1F976A006A368F /* UnitsViewController.swift in Sources */,
 				843567D91E0CF3470008636F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

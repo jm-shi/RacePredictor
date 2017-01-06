@@ -15,7 +15,7 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
     @IBOutlet weak var durationDetailLabel: UILabel!
     @IBOutlet weak var durationText: UITextField!
     
-    var distPickerData = [[String](), [String](), [String](), [".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9"], ["mi"]]
+    var distPickerData = [[String](), [String](), [String](), [".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9"], ["mi", "km"]]
     let hundredsDistComponent = 0
     let tensDistComponent = 1
     let onesDistComponent = 2
@@ -91,6 +91,10 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         titleDetailLabel.text = name
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        view.endEditing(true)
+    }
+    
     //MARK: pickerView delegate and data sources (for distance and duration)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView.tag == 1 {
@@ -147,6 +151,12 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         }
         
         distanceDetailLabel.text = hundreds + tens + ones + tenths + " " + distType
+        
+
+        // Save distance type (mi or km)
+        let defaults = UserDefaults.standard
+        defaults.set(distType, forKey: "distType")
+        defaults.synchronize()
     }
     
     func updateDuration(durationPickerView: UIPickerView) {

@@ -123,6 +123,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         activities.remove(at: sourceIndexPath.row)
         activities.insert(movedActivity, at: destinationIndexPath.row)
         saveActivities()
+        tableView.reloadData()
     }
     
     // Swipe to delete cell
@@ -132,6 +133,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
         saveActivities()
+        tableView.reloadData()
     }
     
     //MARK: Actions
