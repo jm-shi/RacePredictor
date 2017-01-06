@@ -4,16 +4,38 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
-    
-    var activities:[Activity] = [Activity(name: "XC Meet", date: "11/4/15, 10:42 AM", distance: "3.1 mi", duration: "15:53", pace: "5:07/mi", mile: "Projected Mile: 4:47", fiveK: "Projected 5K: 15:53", tenK: "Projected 10K: 33:06", half: "Projected Half: 1:13:10", marathon: "Projected Marathon: 2:32:34"), Activity(name: "Tempo Run", date: "1/2/17, 2:12 PM", distance: "10.4 mi", duration: "1:02:42", pace: "6:01/mi", mile: "Projected Mile: 5:14", fiveK: "Projected 5K: 17:22", tenK: "Projected 10K: 36:14", half: "Projected Half: 1:20:04", marathon: "Projected Marathon: 2:46:57")]
+
+    var activities = [Activity]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        loadActivities()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // Save data in directory
+    var filePath: String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return url!.appendingPathComponent("Activity").path
+    }
+    
+    private func loadActivities() {
+        if let savedActivities = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Activity] {
+            activities = savedActivities
+        }
+    }
+    
+    private func saveActivities() {
+        NSKeyedArchiver.archiveRootObject(activities, toFile: filePath)
+    }
+    
+    private func deleteActivity(activity: Activity) {
+        
     }
     
     //MARK: tableView features
@@ -42,7 +64,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         bgView.backgroundColor = UIColor(red: 236/255, green: 228/255, blue: 211/255, alpha: 1)
         cell.selectedBackgroundView = bgView
         
-        let activity = activities[indexPath.row] as Activity
+        let activity = activities[indexPath.row]
         
         if let titleLabel = cell.viewWithTag(99) as? UILabel {
             titleLabel.text = activity.name
@@ -100,6 +122,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         let movedActivity = self.activities[sourceIndexPath.row]
         activities.remove(at: sourceIndexPath.row)
         activities.insert(movedActivity, at: destinationIndexPath.row)
+        saveActivities()
     }
     
     // Swipe to delete cell
@@ -108,6 +131,7 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
             activities.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
+        saveActivities()
     }
     
     //MARK: Actions
@@ -121,14 +145,18 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBAction func saveActivity(segue: UIStoryboardSegue) {
         if let activityDetailsViewController = segue.source as? ActivityDetailsViewController {
-            
-            if let activity = activityDetailsViewController.activity {
-                activities.append(activity)
+        
+            if let newActivity = activityDetailsViewController.activity {
+                activities.append(newActivity)
+                saveActivities()
                 
                 let indexPath = NSIndexPath(row: activities.count-1, section: 0)
                 tableView.insertRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.automatic)
+                tableView.reloadData()
             }
+
         }
+        
     }
     
 }

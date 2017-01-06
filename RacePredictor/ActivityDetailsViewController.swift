@@ -84,7 +84,10 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let name:String = UserDefaults.standard.string(forKey: "nameLabel") ?? "Untitled Run"
+        var name:String = UserDefaults.standard.string(forKey: "nameLabel") ?? "Untitled Run"
+        if name == "" {
+            name = "Untitled Run"
+        }
         titleDetailLabel.text = name
     }
     
@@ -231,7 +234,7 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
          let updatedMarathonLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 26.2, distance_name: "Marathon")
         
         if segue.identifier == "saveActivity" {
-            activity = Activity(name: titleDetailLabel.text, date: dateDetailLabel.text, distance: distanceDetailLabel.text, duration: durationDetailLabel.text, pace: thePace, mile: updatedMileLabel, fiveK: updated5KLabel, tenK: updated10KLabel, half: updatedHalfLabel, marathon: updatedMarathonLabel)
+            activity = Activity(name: titleDetailLabel.text!, date: dateDetailLabel.text!, distance: distanceDetailLabel.text!, duration: durationDetailLabel.text!, pace: thePace, mile: updatedMileLabel, fiveK: updated5KLabel, tenK: updated10KLabel, half: updatedHalfLabel, marathon: updatedMarathonLabel)
         }
     }
     
