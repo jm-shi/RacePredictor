@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="hrs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F70-7j-60E">
-                                <rect key="frame" x="182.5" y="114" width="57" height="30"/>
+                                <rect key="frame" x="182.5" y="114" width="57.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ew5-9I-zCj"/>
                                 </constraints>
@@ -55,7 +55,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="secs" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JdE-hK-0ZC">
-                                <rect key="frame" x="307.5" y="114" width="56.5" height="30"/>
+                                <rect key="frame" x="308" y="114" width="56" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NmQ-7u-4mp"/>
                                 </constraints>
@@ -202,7 +202,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="mins" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="366-AC-Gz2">
-                                <rect key="frame" x="246.5" y="113" width="54" height="30"/>
+                                <rect key="frame" x="247" y="113" width="54" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="keL-16-8Xa"/>
                                     <constraint firstAttribute="width" constant="54" id="su6-1C-dO9"/>
@@ -426,11 +426,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="0.25" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="220" id="Zbu-Ie-2tf" customClass="CustomCell" customModule="RacePredictor" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="220" id="Zbu-Ie-2tf" customClass="CustomCell" customModule="RacePredictor" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zbu-Ie-2tf" id="H3a-tQ-99Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="219"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNK-cK-8BT">
@@ -522,6 +522,7 @@
                                             <outlet property="thePace" destination="Slc-lJ-cFB" id="yfg-9E-Xds"/>
                                             <outlet property="theTime" destination="qYo-he-xz9" id="rG4-g5-xLK"/>
                                             <outlet property="theTitle" destination="Wyt-rT-Xvd" id="XOT-4T-GNx"/>
+                                            <segue destination="QFY-zX-zXx" kind="push" identifier="toCellVC" id="ZDt-zq-Ggi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -559,6 +560,126 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpa-xg-E8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="612.5" y="-350.5"/>
+        </scene>
+        <!--Cell View Controller-->
+        <scene sceneID="FLr-yV-LAT">
+            <objects>
+                <viewController id="QFY-zX-zXx" customClass="CellViewController" customModule="RacePredictor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8hl-U1-OeS"/>
+                        <viewControllerLayoutGuide type="bottom" id="cwn-lb-yIT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ekX-Bm-8aa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="dss-dP-yWG">
+                                <rect key="frame" x="20" y="84" width="334" height="304"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4JY-WN-SPe" userLabel="Titles">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="146.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="99" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Untitled Run" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="98d-Xn-ZJZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="36"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date                                                       " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RLr-fN-CIa">
+                                                <rect key="frame" x="0.0" y="36" width="334" height="26.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dist                                                        " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lhV-E8-oZo">
+                                                <rect key="frame" x="0.0" y="62.5" width="334" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time                                                       " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qCK-NL-6Sm">
+                                                <rect key="frame" x="0.0" y="80.5" width="334" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace                                                       " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zF3-L9-Ob1">
+                                                <rect key="frame" x="0.0" y="98.5" width="334" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MGP-6f-22R" userLabel="Empty Stack View">
+                                                <rect key="frame" x="0.0" y="116.5" width="334" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="uji-Q6-dLD"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WrV-4J-btX" userLabel="Proj Dist">
+                                        <rect key="frame" x="0.0" y="146.5" width="333.5" height="157.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Mile:                                                     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VCh-iz-meY">
+                                                <rect key="frame" x="0.0" y="0.0" width="333.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected 5K:                                                        " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bPg-fb-cG4">
+                                                <rect key="frame" x="0.0" y="34.5" width="333.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="106" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected 10K:                                                     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="u48-66-1eb">
+                                                <rect key="frame" x="0.0" y="69" width="333.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="107" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Half:                                                    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJa-gc-tUk">
+                                                <rect key="frame" x="0.0" y="103.5" width="333.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="108" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Projected Marathon:                                          " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Cjl-6r-D3l">
+                                                <rect key="frame" x="0.0" y="138" width="333.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86577181209999998" green="0.9127516779" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cwn-lb-yIT" firstAttribute="top" secondItem="dss-dP-yWG" secondAttribute="bottom" constant="230" id="Rfh-aX-ue0"/>
+                            <constraint firstItem="dss-dP-yWG" firstAttribute="top" secondItem="8hl-U1-OeS" secondAttribute="bottom" constant="20" id="rO2-XB-agA"/>
+                            <constraint firstItem="dss-dP-yWG" firstAttribute="leading" secondItem="ekX-Bm-8aa" secondAttribute="leadingMargin" constant="4" id="to0-ti-72t"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dss-dP-yWG" secondAttribute="trailing" constant="5" id="w6H-yL-1Mc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HxP-Fg-MgV"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="RLr-fN-CIa" id="acs-B1-10m"/>
+                        <outlet property="distLabel" destination="lhV-E8-oZo" id="g5O-Q1-adj"/>
+                        <outlet property="durationLabel" destination="qCK-NL-6Sm" id="nzL-fT-E42"/>
+                        <outlet property="fiveKLabel" destination="bPg-fb-cG4" id="P19-FL-jUm"/>
+                        <outlet property="halfLabel" destination="vJa-gc-tUk" id="oD0-H8-JWn"/>
+                        <outlet property="marathonLabel" destination="Cjl-6r-D3l" id="p9m-GQ-xSF"/>
+                        <outlet property="mileLabel" destination="VCh-iz-meY" id="cIa-tm-r8b"/>
+                        <outlet property="nameLabel" destination="98d-Xn-ZJZ" id="UtS-QE-4qZ"/>
+                        <outlet property="paceLabel" destination="zF3-L9-Ob1" id="Hqb-Ii-VSa"/>
+                        <outlet property="tenKLabel" destination="u48-66-1eb" id="gRn-Zf-n1J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdR-Ny-0SF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612.5" y="433.5"/>
         </scene>
         <!--Add New Activity-->
         <scene sceneID="ZfP-xO-rE0">

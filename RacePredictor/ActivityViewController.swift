@@ -34,10 +34,6 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
         NSKeyedArchiver.archiveRootObject(activities, toFile: filePath)
     }
     
-    private func deleteActivity(activity: Activity) {
-        
-    }
-    
     //MARK: tableView features
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -115,6 +111,20 @@ class ActivityViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "toCellVC", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCellVC" {
+            let selectedIndex = self.tableView.indexPath(for: sender as! UITableViewCell)?.row
+            let selectedRow = selectedIndex!
+            
+            let defaults = UserDefaults.standard
+            defaults.set(selectedRow, forKey: "rowIndex")
+        }
     }
     
     // Reorder cells
