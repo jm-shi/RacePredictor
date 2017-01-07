@@ -20,6 +20,7 @@
 		84CBF1551E1DD4B6006A368F /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF1541E1DD4B6006A368F /* NameViewController.swift */; };
 		84CBF1591E1F976A006A368F /* UnitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF1581E1F976A006A368F /* UnitsViewController.swift */; };
 		84CBF15B1E204F93006A368F /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF15A1E204F93006A368F /* CellViewController.swift */; };
+		84CBF15D1E2099B2006A368F /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBF15C1E2099B2006A368F /* NotesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		84CBF1541E1DD4B6006A368F /* NameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		84CBF1581E1F976A006A368F /* UnitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsViewController.swift; sourceTree = "<group>"; };
 		84CBF15A1E204F93006A368F /* CellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
+		84CBF15C1E2099B2006A368F /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				84CBF15A1E204F93006A368F /* CellViewController.swift */,
 				84705ECE1E174BB900FA29EB /* CustomCell.swift */,
 				84CBF1541E1DD4B6006A368F /* NameViewController.swift */,
+				84CBF15C1E2099B2006A368F /* NotesViewController.swift */,
 				84CBF1581E1F976A006A368F /* UnitsViewController.swift */,
 				843567DC1E0CF3470008636F /* Main.storyboard */,
 				843567DF1E0CF3470008636F /* Assets.xcassets */,
@@ -162,6 +165,7 @@
 			files = (
 				84CBF15B1E204F93006A368F /* CellViewController.swift in Sources */,
 				84705EDD1E1A28A900FA29EB /* ActivityDetailsViewController.swift in Sources */,
+				84CBF15D1E2099B2006A368F /* NotesViewController.swift in Sources */,
 				84705EE51E1A360F00FA29EB /* Activity.swift in Sources */,
 				84CBF1531E1CEA40006A368F /* Calculator.swift in Sources */,
 				84705ED31E17544600FA29EB /* ActivityViewController.swift in Sources */,

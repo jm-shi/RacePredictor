@@ -127,7 +127,7 @@ class CalculatorViewController: UIViewController {
     
     // Calculate pace and projected times, then modify textfields
     func calculateAndUpdate() {
-        let distance_run = Double(dist.text!) ?? 0
+        var distance_run = Double(dist.text!) ?? 0
         let hours_run = Double(hours.text!) ?? 0
         let mins_run = Double(mins.text!) ?? 00
         let secs_run = Double(secs.text!) ?? 00
@@ -140,6 +140,7 @@ class CalculatorViewController: UIViewController {
             toDefaultScreen(time: 0.1)
         }
         else {
+            distance_run = convertDistRunToMiles(distance_run: distance_run, adding_activity: false)
             showPace(total_min: total_min_run, total_dist: distance_run)
             showTimeTextFields()
         }

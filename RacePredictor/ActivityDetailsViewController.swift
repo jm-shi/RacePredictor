@@ -15,6 +15,9 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
     @IBOutlet weak var durationDetailLabel: UILabel!
     @IBOutlet weak var durationText: UITextField!
     
+    @IBOutlet weak var notesDetailLabel: UILabel!
+    @IBOutlet weak var notesButton: UIButton!
+    
     var distPickerData = [[String](), [String](), [String](), [".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9"], ["mi", "km"]]
     let hundredsDistComponent = 0
     let tensDistComponent = 1
@@ -51,6 +54,7 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         }
         
         UserDefaults.standard.set("Untitled Run", forKey: "nameLabel")
+        UserDefaults.standard.set("How was the run?", forKey: "notesLabel")
         
         let datePickerView = UIDatePicker()
         dateText.inputView = datePickerView
@@ -84,11 +88,18 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         var name:String = UserDefaults.standard.string(forKey: "nameLabel") ?? "Untitled Run"
         if name == "" {
             name = "Untitled Run"
         }
         titleDetailLabel.text = name
+
+        var notes:String = UserDefaults.standard.string(forKey: "notesLabel") ?? "How was the run?"
+        if notes == "" || notes == "\n" {
+            notes = "How was the run?"
+        }
+        notesDetailLabel.text = notes
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -220,14 +231,18 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         if segue.identifier == "enterName" {
             return
         }
-        
+        if segue.identifier == "enterNotes" {
+            return
+        }
         if segue.identifier == "cancelActivity" {
             return
         }
         
         let totalMinRun = calculateTotalMinRun(hours_run: Double(timeTaken[0])!, mins_run: Double(timeTaken[1])!, secs_run: Double(timeTaken[2])!)
         
-        let paceArray:[Int] = calculatePace(total_min: totalMinRun, total_dist: Double(distanceRun)!)
+        var dist = Double(distanceRun)!
+        dist = convertDistRunToMiles(distance_run: dist, adding_activity: true)
+        let paceArray:[Int] = calculatePace(total_min: totalMinRun, total_dist: dist)
         
         var thePace = String()
         if paceArray[0] != 0 {
@@ -237,14 +252,19 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
             thePace = String(paceArray[1]) + ":" + twoDigits(number: paceArray[2]) + "/mi"
         }
         
-        let updatedMileLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 1.0, distance_name: "Mile")
-         let updated5KLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 3.1, distance_name: "5K")
-         let updated10KLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 6.2, distance_name: "10K")
-         let updatedHalfLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 13.1, distance_name: "Half")
-         let updatedMarathonLabel = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 26.2, distance_name: "Marathon")
+        let updatedMile = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 1.0, distance_name: "Mile")
+         let updated5K = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 3.1, distance_name: "5K")
+         let updated10K = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 6.2, distance_name: "10K")
+         let updatedHalf = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 13.1, distance_name: "Half")
+         let updatedMarathon = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 26.2, distance_name: "Marathon")
+        
+        var notesToSave = notesDetailLabel.text!
+        if notesToSave == "How was the run?" {
+            notesToSave = ""
+        }
         
         if segue.identifier == "saveActivity" {
-            activity = Activity(name: titleDetailLabel.text!, date: dateDetailLabel.text!, distance: distanceDetailLabel.text!, duration: durationDetailLabel.text!, pace: thePace, mile: updatedMileLabel, fiveK: updated5KLabel, tenK: updated10KLabel, half: updatedHalfLabel, marathon: updatedMarathonLabel)
+            activity = Activity(name: titleDetailLabel.text!, date: dateDetailLabel.text!, distance: distanceDetailLabel.text!, duration: durationDetailLabel.text!, pace: thePace, mile: updatedMile, fiveK: updated5K, tenK: updated10K, half: updatedHalf, marathon: updatedMarathon, notes: notesToSave)
         }
     }
     

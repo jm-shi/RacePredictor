@@ -12,8 +12,9 @@ class Activity: NSObject, NSCoding {
     var tenK: String?
     var half: String?
     var marathon: String?
+    var notes: String?
     
-    init(name: String, date: String, distance: String, duration: String, pace: String, mile: String, fiveK: String, tenK: String, half: String, marathon: String) {
+    init(name: String, date: String, distance: String, duration: String, pace: String, mile: String, fiveK: String, tenK: String, half: String, marathon: String, notes: String) {
         self.name = name
         self.date = date
         self.distance = distance
@@ -24,6 +25,7 @@ class Activity: NSObject, NSCoding {
         self.tenK = tenK
         self.half = half
         self.marathon = marathon
+        self.notes = notes
     }
     
     struct Keys {
@@ -37,6 +39,7 @@ class Activity: NSObject, NSCoding {
         static let TenK = "tenK"
         static let Half = "half"
         static let Marathon = "marathon"
+        static let Notes = "notes"
     }
     
     //MARK: NSCoding
@@ -80,6 +83,9 @@ class Activity: NSObject, NSCoding {
         if let marathonObject = decoder.decodeObject(forKey: Keys.Marathon) as? String {
             marathon = marathonObject
         }
+        if let notesObject = decoder.decodeObject(forKey: Keys.Notes) as? String {
+            notes = notesObject
+        }
     }
     
     func encode(with coder: NSCoder) {
@@ -93,6 +99,7 @@ class Activity: NSObject, NSCoding {
         coder.encode(tenK, forKey: Keys.TenK)
         coder.encode(half, forKey: Keys.Half)
         coder.encode(marathon, forKey: Keys.Marathon)
+        coder.encode(notes, forKey: Keys.Notes)
     }
 
 }

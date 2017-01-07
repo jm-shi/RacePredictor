@@ -12,6 +12,7 @@ class CellViewController: UIViewController {
     @IBOutlet weak var tenKLabel: UILabel!
     @IBOutlet weak var halfLabel: UILabel!
     @IBOutlet weak var marathonLabel: UILabel!
+    @IBOutlet weak var notesTextView: UITextView!
     
     var activities = [Activity]()
     
@@ -41,15 +42,16 @@ class CellViewController: UIViewController {
         let theTenK = activities[activityIndex].tenK
         let theHalf = activities[activityIndex].half
         let theMarathon = activities[activityIndex].marathon
+        let theNotes = activities[activityIndex].notes
         
-        updateTheLabels(name: theName, date: theDate, dist: theDist, duration: theDuration, pace: thePace, mile: theMile, fiveK: theFiveK, tenK: theTenK, half: theHalf, marathon: theMarathon)
+        updateTheLabels(name: theName, date: theDate, dist: theDist, duration: theDuration, pace: thePace, mile: theMile, fiveK: theFiveK, tenK: theTenK, half: theHalf, marathon: theMarathon, notes: theNotes)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func updateTheLabels(name: String!, date: String!, dist: String!, duration: String!, pace: String!, mile: String!, fiveK: String!, tenK: String!, half: String!, marathon: String!) {
+    func updateTheLabels(name: String!, date: String!, dist: String!, duration: String!, pace: String!, mile: String!, fiveK: String!, tenK: String!, half: String!, marathon: String!, notes: String!) {
         nameLabel.text = name
         dateLabel.text = date
         distLabel.text = dist
@@ -60,6 +62,7 @@ class CellViewController: UIViewController {
         tenKLabel.text = tenK
         halfLabel.text = half
         marathonLabel.text = marathon
+        notesTextView.text = notes
     }
     
 }
