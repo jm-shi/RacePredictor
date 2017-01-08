@@ -253,10 +253,10 @@ class ActivityDetailsViewController: UITableViewController, UIPickerViewDataSour
         }
         
         let updatedMile = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 1.0, distance_name: "Mile")
-         let updated5K = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 3.1, distance_name: "5K")
-         let updated10K = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 6.2, distance_name: "10K")
-         let updatedHalf = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 13.1, distance_name: "Half")
-         let updatedMarathon = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 26.2, distance_name: "Marathon")
+         let updated5K = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 3.10686, distance_name: "5K")
+         let updated10K = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 6.21371, distance_name: "10K")
+         let updatedHalf = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 13.1094, distance_name: "Half")
+         let updatedMarathon = updateLabels(distance_run: Double(distanceRun)!, total_min_run: totalMinRun, projected_distance: 26.2188, distance_name: "Marathon")
         
         var notesToSave = notesDetailLabel.text!
         if notesToSave == "How was the run?" {

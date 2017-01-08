@@ -146,7 +146,9 @@ class CalculatorViewController: UIViewController {
         }
         
         if proj_dist < Double(Int.max/100) && proj_dist != 0 {
-            showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: proj_dist, projected_time: projected_time)
+            let proj_dist_convert_if_necessary = convertProjectedDistRunToMiles(projected_distance: proj_dist)
+            
+            showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: proj_dist_convert_if_necessary, projected_time: projected_time)
         }
         
         showProjectedTimes(distance_run: distance_run, total_min_run: total_min_run, projected_distance: 1, projected_time: projected_mile)

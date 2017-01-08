@@ -20,7 +20,7 @@ func convertDistRunToMiles(distance_run: Double, adding_activity: Bool) -> Doubl
     let defaults = UserDefaults.standard
     
     if adding_activity {
-        let distType = UserDefaults.standard.string(forKey: "distType")
+        let distType = defaults.string(forKey: "distType")
         if distType == "km" {
             distRun = kmToMiles(km: distance_run)
         }
@@ -44,18 +44,12 @@ func convertProjectedDistRunToMiles(projected_distance: Double) -> Double {
     return projectedDistRun
 }
 
+// For CalculatorViewController and ActivitiyDetailsViewController
 func predictTime(distance_run: Double, total_min_run: Double, projected_distance: Double, adding_activity: Bool) -> Array<Int> {
-    
-    var distRun = distance_run
-    var projectedDistRun = projected_distance
-    
-    distRun = convertDistRunToMiles(distance_run: distRun, adding_activity: adding_activity)
-    projectedDistRun = convertProjectedDistRunToMiles(projected_distance: projectedDistRun)
-    
     var est_total_min = (Double)(0)
     
-    if distRun != 0 {
-        est_total_min = total_min_run * pow(projectedDistRun/distRun, 1.06)
+    if distance_run != 0 {
+        est_total_min = total_min_run * pow(projected_distance/distance_run, 1.06)
     }
     
     let est_hours = (Int)(est_total_min/60)
@@ -84,7 +78,10 @@ func calculateTotalMinRun(hours_run: Double, mins_run: Double, secs_run: Double)
 
 // For ActivityDetailsViewController
 func updateLabels(distance_run: Double, total_min_run: Double, projected_distance: Double, distance_name: String) -> String {
-    let timeArray:[Int] = predictTime(distance_run: Double(distance_run), total_min_run: Double(total_min_run), projected_distance: projected_distance, adding_activity: true)
+    // Convert distance run from km to miles if necessary
+    let distance_run_converted = convertDistRunToMiles(distance_run: distance_run, adding_activity: true)
+    
+    let timeArray:[Int] = predictTime(distance_run:distance_run_converted, total_min_run: total_min_run, projected_distance: projected_distance, adding_activity: true)
     
     var updatedLabel = "Projected " + distance_name + ": "
     if timeArray[0] != 0 {
